@@ -51,7 +51,6 @@ namespace App\Models {
             ];
         }
 
-
         // ------------------------------------------------
         // relations
         public function makeReady(): Relations\BelongsTo
@@ -73,6 +72,9 @@ namespace App\Models {
         {
             return $this->belongsTo(Vendor::class, 'vendor_id');
         }
+
+        // ------------------------------------------------
+        // attributes
 
         protected function cancelledAt(): Attribute
         {
@@ -103,13 +105,6 @@ namespace App\Models {
         }
 
         protected function onHoldAt(): Attribute
-        {
-            return Attribute::make(
-                get: static fn ($value) => Carbon::parse($value)->format('M d, Y'),
-            );
-        }
-
-        protected function createdAt(): Attribute
         {
             return Attribute::make(
                 get: static fn ($value) => Carbon::parse($value)->format('M d, Y'),

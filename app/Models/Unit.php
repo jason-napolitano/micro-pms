@@ -20,6 +20,7 @@ namespace App\Models {
 
         // ------------------------------------------------
         // relations
+        
         public function property(): Relations\BelongsTo
         {
             return $this->belongsTo(Property::class);

@@ -25,6 +25,7 @@ namespace App\Models {
 
         // ------------------------------------------------
         // casts
+
         protected function casts(): array
         {
             return [
@@ -38,6 +39,7 @@ namespace App\Models {
 
         // ------------------------------------------------
         // relations
+
         public function unit(): Relations\BelongsTo
         {
             return $this->belongsTo(Unit::class);
@@ -48,23 +50,8 @@ namespace App\Models {
             return $this->hasMany(MakeReadyItem::class);
         }
 
-        public function getProgressAttribute(): int
-        {
-            $total = $this->items->count();
-
-            if ($total === 0) {
-                return 0;
-            }
-
-            $completed = $this->items
-                ->where('status', MakeReadyStatus::COMPLETED)
-                ->count();
-
-            return (int)round(($completed / $total) * 100);
-        }
-
         // ------------------------------------------------
-        // casts
+        // attributes
 
         protected function startedAt(): Attribute
         {

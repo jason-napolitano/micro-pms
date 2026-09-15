@@ -13,18 +13,20 @@ namespace App\Http\Controllers {
 
     class PropertyController extends Controller
     {
+        /**
+         * Display a list of resources
+         *
+         * @return Response
+         */
         public function index(): Response
         {
+            // authorization
             Gate::authorize('view_properties');
 
-            /**
-             * Show a list of resources
-             *
-             * @param Models\Property $property
-             *
-             * @return Response
-             */
+            // data
             $properties = user()->properties()->with(['units', 'floorPlans'])->paginate(10);
+
+            // inertia response
             return inertia('properties/index', compact('properties'));
         }
 
@@ -37,8 +39,10 @@ namespace App\Http\Controllers {
          */
         public function show(Models\Property $property): Response
         {
+            // authorization
             Gate::authorize('view', $property);
 
+            // inertia response
             return inertia('properties/show', [
                 'makeReadyUnits'   => http_action(GetMakeReadyUnits::class, $property),
                 'propertyUnits'    => http_action(GetPropertyUnits::class, $property),
@@ -61,6 +65,7 @@ namespace App\Http\Controllers {
          */
         public function store(StoreProperty $request): Http\RedirectResponse
         {
+            // authorization
             Gate::authorize('create_property');
 
             // create new record
@@ -97,9 +102,13 @@ namespace App\Http\Controllers {
          */
         public function destroy(Models\Property $property): Http\RedirectResponse
         {
+            // authorization
             Gate::authorize('delete', $property);
 
+            // delete the record
             $property->delete();
+
+            // redirect
             return back();
         }
     }

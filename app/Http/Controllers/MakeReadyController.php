@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers {
 
-    use App\Http\Controllers;
-    use App\Http\Requests\MakeReady;
-    use App\Models;
     use App\Models\Enums\MakeReadyStatus;
-    use Illuminate\Http;
     use Illuminate\Http\RedirectResponse;
-    use Illuminate\Http\Request;
     use Illuminate\Support\Facades\DB;
+    use App\Http\Requests\MakeReady;
+    use Illuminate\Http\Request;
+    use App\Http\Controllers;
+    use Illuminate\Http;
+    use App\Models;
 
     class MakeReadyController extends Controllers\Controller
     {
@@ -39,21 +39,29 @@ namespace App\Http\Controllers {
             return back();
         }
 
+        /**
+         * Update the status of a record
+         *
+         * @param MakeReady\UpdateStatus $request
+         * @param Models\MakeReady       $makeReady
+         *
+         * @return RedirectResponse
+         */
         public function updateStatus(MakeReady\UpdateStatus $request, Models\MakeReady $makeReady): RedirectResponse
         {
             // input validation
             $request->validated();
 
             // update the model
-            if ($request->status === 'completed') {
+            if ($request['status'] === 'completed') {
                 $makeReady['completed_at'] = now();
                 $makeReady['status'] = MakeReadyStatus::COMPLETED;
             }
-            if ($request->status === 'cancelled') {
+            if ($request['status'] === 'cancelled') {
                 $makeReady['cancelled_at'] = now();
                 $makeReady['status'] = MakeReadyStatus::COMPLETED;
             }
-            if ($request->status === 'on_hold') {
+            if ($request['status'] === 'on_hold') {
                 $makeReady['on_hold_at'] = now();
                 $makeReady['status'] = MakeReadyStatus::COMPLETED;
             }
@@ -65,6 +73,13 @@ namespace App\Http\Controllers {
             return back();
         }
 
+        /**
+         * Update the visibility of a record
+         *
+         * @param Request $request
+         *
+         * @return RedirectResponse
+         */
         public function updateVisibleItems(Request $request): RedirectResponse
         {
             $type = Models\ItemType::withTrashed()->find($request['type'])->first();
@@ -74,10 +89,15 @@ namespace App\Http\Controllers {
                 $type->delete();
             }
 
+            // redirect
             return back();
         }
 
         /**
+         * Reorder the records
+         *
+         * @param Request $request
+         *
          * @return RedirectResponse
          */
         public function reorder(Request $request): RedirectResponse
@@ -95,7 +115,7 @@ namespace App\Http\Controllers {
                 }
             });
 
-
+            // redirect
             return back();
         }
     }

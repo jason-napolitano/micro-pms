@@ -2,12 +2,20 @@
 
 namespace App\Models {
 
-
-    use Illuminate\Database\Eloquent\Attributes\Fillable;
-
-    #[Fillable(['name', 'description', 'order'])]
     class ItemType extends BaseModel
     {
+        /** @inheritdoc */
+        protected $fillable = [
+            'description',
+            'order',
+            'name',
+        ];
+
+        // ------------------------------------------------
+        // casts
+        /**
+         * @inheritdoc
+         */
         public function casts(): array
         {
             return [

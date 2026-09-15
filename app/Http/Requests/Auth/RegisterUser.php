@@ -2,14 +2,16 @@
 
 namespace App\Http\Requests\Users {
 
-    use App\Models\User;
     use Illuminate\Foundation\Http\FormRequest;
     use Illuminate\Validation\Rules\Password;
+    use App\Models\User;
 
     class RegisterUser extends FormRequest
     {
         /**
          * Determine if the user is authorized to make this request.
+         *
+         * @return bool
          */
         public function authorize(): bool
         {
@@ -19,7 +21,7 @@ namespace App\Http\Requests\Users {
         /**
          * Get the validation rules that apply to the request.
          *
-         * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+         * @return array<string>
          */
         public function rules(): array
         {

@@ -53,7 +53,21 @@ namespace App\Models {
         }
 
         // ------------------------------------------------
-        // casts
+        // relations
+
+        public function properties(): Relations\BelongsToMany
+        {
+            return $this->belongsToMany(Property::class)->withTimestamps();
+        }
+
+        public function assignedMakeReadyItems(): Relations\HasMany
+        {
+            return $this->hasMany(MakeReadyItem::class, 'assigned_to');
+        }
+
+        // ------------------------------------------------
+        // attributes
+
         protected function createdAt(): Attribute
         {
             return Attribute::make(
@@ -66,18 +80,6 @@ namespace App\Models {
             return Attribute::make(
                 get: static fn ($value) => Carbon::parse($value)->format('M d, Y'),
             );
-        }
-
-        // ------------------------------------------------
-        // relations
-        public function properties(): Relations\BelongsToMany
-        {
-            return $this->belongsToMany(Property::class)->withTimestamps();
-        }
-
-        public function assignedMakeReadyItems(): Relations\HasMany
-        {
-            return $this->hasMany(MakeReadyItem::class, 'assigned_to');
         }
     }
 }

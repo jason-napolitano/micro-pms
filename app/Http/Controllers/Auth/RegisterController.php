@@ -12,8 +12,10 @@ namespace App\Http\Controllers\Auth {
     {
         /**
          * Handle an incoming registration request.
+         * 
+         * @param RegisterUser $request
          *
-         * @throws \Illuminate\Validation\ValidationException
+         * @return RedirectResponse
          */
         public function __invoke(RegisterUser $request): RedirectResponse
         {

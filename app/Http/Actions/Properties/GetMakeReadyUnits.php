@@ -2,12 +2,19 @@
 
 namespace App\Http\Actions\Properties {
 
-    use Illuminate\Database\Eloquent\Collection;
+    use Illuminate\Database;
     use App\Models\Property;
 
     class GetMakeReadyUnits
 	{
-        public function __invoke(Property $property): Collection
+        /**
+         * Invoke the action
+         *
+         * @param Property $property
+         *
+         * @return Database\Eloquent\Collection
+         */
+        public function __invoke(Property $property): Database\Eloquent\Collection
         {
             return $property->units()
                 ->whereHas('makeReady')
@@ -22,7 +29,6 @@ namespace App\Http\Actions\Properties {
                         ->whereNull('item_types.deleted_at')
                         ->orderBy('item_types.order')
                         ->select('make_ready_items.*'),
-
                     'makeReady.items.assignee',
                     'makeReady.items.vendor',
                     'makeReady.items.type',

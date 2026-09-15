@@ -8,9 +8,7 @@ namespace App\Http\Middleware {
     class HandleInertiaRequests extends Middleware
     {
         /**
-         * Determines the current asset version.
-         *
-         * @see https://inertiajs.com/asset-versioning
+         * @inheritdoc
          */
         public function version(Request $request): ?string
         {
@@ -18,11 +16,7 @@ namespace App\Http\Middleware {
         }
 
         /**
-         * Define the props that are shared by default.
-         *
-         * @see https://inertiajs.com/shared-data
-         *
-         * @return array<string, mixed>
+         * @inheritdoc
          */
         public function share(Request $request): array
         {

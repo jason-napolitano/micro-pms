@@ -11,6 +11,10 @@ namespace App\Http\Controllers\Auth {
     {
         /**
          * Handle an incoming authentication request.
+         *
+         * @param MemberLogin $request
+         *
+         * @return RedirectResponse
          */
         public function __invoke(MemberLogin $request): RedirectResponse
         {

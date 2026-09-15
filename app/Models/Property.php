@@ -37,6 +37,7 @@ namespace App\Models {
 
         // ------------------------------------------------
         // lifecycle hooks
+
         protected static function boot(): void
         {
             parent::boot();

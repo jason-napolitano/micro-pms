@@ -20,7 +20,7 @@ namespace App\Http\Controllers {
          */
         public function store(StoreUnit $request): RedirectResponse
         {
-            // create new record
+            // create the record
             Unit::create($request->validated());
 
             // redirect
@@ -28,14 +28,18 @@ namespace App\Http\Controllers {
         }
 
         /**
+         * Removes a record from storage
+         *
          * @param Unit $unit
          *
          * @return RedirectResponse
          */
         public function destroy(Unit $unit): RedirectResponse
         {
+            // delete the record
             $unit->delete();
 
+            // redirect
             return back();
         }
     }

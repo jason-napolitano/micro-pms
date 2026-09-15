@@ -21,7 +21,8 @@ namespace App\Models {
         use Eloquent\SoftDeletes;
 
         // ------------------------------------------------
-        // accessors
+        // attributes
+
         protected function createdAt(): Eloquent\Casts\Attribute
         {
             return Eloquent\Casts\Attribute::make(

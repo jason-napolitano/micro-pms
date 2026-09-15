@@ -1,30 +1,33 @@
 <?php
 
-namespace App\Http\Requests\MakeReady;
+namespace App\Http\Requests\MakeReady {
 
-use Illuminate\Contracts\Validation\ValidationRule;
-use Illuminate\Foundation\Http\FormRequest;
+    use Illuminate\Contracts\Validation\ValidationRule;
+    use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateSchedule extends FormRequest
-{
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
+    class UpdateSchedule extends FormRequest
     {
-        return true;
-    }
+        /**
+         * Determine if the user is authorized to make this request.
+         *
+         * @return bool
+         */
+        public function authorize(): bool
+        {
+            return true;
+        }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, ValidationRule|<array>
-     */
-    public function rules(): array
-    {
-        return [
-            'scheduled_start_at' => ['nullable', 'date'],
-            'scheduled_end_at'   => ['nullable', 'date'],
-        ];
+        /**
+         * Get the validation rules that apply to the request.
+         *
+         * @return array<string>
+         */
+        public function rules(): array
+        {
+            return [
+                'scheduled_start_at' => ['nullable', 'date'],
+                'scheduled_end_at'   => ['nullable', 'date'],
+            ];
+        }
     }
 }

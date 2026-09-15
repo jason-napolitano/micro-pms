@@ -3,8 +3,8 @@
 namespace App\Http\Controllers {
 
 	use App\Http\Requests\FloorPlans\StoreFloorPlan;
-	use App\Models\FloorPlan;
-	use Illuminate\Http\RedirectResponse;
+    use Illuminate\Http\RedirectResponse;
+    use App\Models\FloorPlan;
 
 	class FloorPlanController extends Controller
     {
@@ -18,20 +18,25 @@ namespace App\Http\Controllers {
         public function store(StoreFloorPlan $request): RedirectResponse
         {
             // create new record
-            FloorPlan::create($request->all());
+            FloorPlan::create($request->validated());
 
             // redirect
             return back();
         }
 
         /**
+         * Removes a record from storage
+         *
          * @param FloorPlan $floorPlan
          *
          * @return RedirectResponse
          */
         public function destroy(FloorPlan $floorPlan): RedirectResponse
         {
+            // delete the record
             $floorPlan->delete();
+
+            // redirect
             return back();
         }
     }

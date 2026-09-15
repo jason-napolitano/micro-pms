@@ -9,6 +9,8 @@ namespace App\Http\Requests\MakeReady {
     {
         /**
          * Determine if the user is authorized to make this request.
+         *
+         * @return boolean
          */
         public function authorize(): bool
         {
@@ -18,7 +20,7 @@ namespace App\Http\Requests\MakeReady {
         /**
          * Get the validation rules that apply to the request.
          *
-         * @return array<string, ValidationRule|array<mixed>|string>
+         * @return array<string>
          */
         public function rules(): array
         {

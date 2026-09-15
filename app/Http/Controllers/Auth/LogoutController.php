@@ -11,6 +11,10 @@ namespace App\Http\Controllers\Auth {
     {
         /**
          * Destroy an authenticated session.
+         *
+         * @param Request $request
+         *
+         * @return RedirectResponse
          */
         public function __invoke(Request $request): RedirectResponse
         {

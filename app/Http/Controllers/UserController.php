@@ -53,10 +53,19 @@ namespace App\Http\Controllers {
             ]);
         }
 
+        /**
+         * Store a newly created resource in storage.
+         *
+         * @param Requests\Users\StoreUser $request
+         *
+         * @return Http\RedirectResponse
+         */
         public function store(Requests\Users\StoreUser $request): Http\RedirectResponse
         {
+            // authorization
             Gate::authorize('create_users');
 
+            // create the record
             $user = User::create([
                 'username' => str($request->username)->slug(),
                 'name'     => $request->name,
@@ -66,6 +75,8 @@ namespace App\Http\Controllers {
 
             // assign role
             $user->assignRole($request['role']);
+
+            // redirect
             return back();
         }
 
@@ -79,10 +90,11 @@ namespace App\Http\Controllers {
          */
         public function update(Requests\Users\UpdateUser $request, Models\User $user): Http\RedirectResponse
         {
+            // authorization
             Gate::authorize('update_user');
 
+            // update the record
             $request->validated();
-
             $user->update([
                 'name'     => $request->name ?: $user['name'],
                 'username' => $request->username ? str($request->username)->slug(separator: '_') : $user['username'],
@@ -90,20 +102,24 @@ namespace App\Http\Controllers {
                 'password' => $request->password ? Support\Facades\Hash::make($request->password) : $user['password'],
             ]);
 
+            // redirect
             return to_route('users.show', $user);
         }
 
-
         /**
-         * @param Http\Request         $request
+         * Assign a property to a user record
+         *
+         * @param User            $user
          * @param Models\Property $property
          *
          * @return Http\RedirectResponse
          */
         public function assignProperty(Models\User $user, Models\Property $property): Http\RedirectResponse
         {
+            // toggle the record
             $user->properties()->toggle($property);
 
+            // redirect
             return back();
         }
 
@@ -131,6 +147,7 @@ namespace App\Http\Controllers {
                 throw new \RuntimeException($e->getMessage());
             }
 
+            // redirect
             return back();
         }
 
@@ -143,10 +160,13 @@ namespace App\Http\Controllers {
          */
         public function destroy(Models\User $user): Http\RedirectResponse
         {
+            // authorization
             Gate::authorize('delete_user');
 
+            // delete the record
             $user->delete();
 
+            // redirect
             return back();
         }
     }
