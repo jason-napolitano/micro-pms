@@ -25,7 +25,7 @@ namespace App\Http\Controllers {
             // create new record
             $makeReady = Models\MakeReady::create($request->validated());
 
-            // create new make ready item
+            // create make ready item types
             if ($makeReady) {
                 foreach (Models\ItemType::withTrashed()->get() as $item) {
                     Models\MakeReadyItem::create([
@@ -74,7 +74,7 @@ namespace App\Http\Controllers {
         }
 
         /**
-         * Update the visibility of a record
+         * Update the visibility of records
          *
          * @param Request $request
          *
@@ -82,7 +82,10 @@ namespace App\Http\Controllers {
          */
         public function updateVisibleItems(Request $request): RedirectResponse
         {
+            // get the item type
             $type = Models\ItemType::withTrashed()->find($request['type'])->first();
+
+            // toggle restore / delete
             if ($type['deleted_at']) {
                 $type->restore();
             } else {
@@ -94,7 +97,7 @@ namespace App\Http\Controllers {
         }
 
         /**
-         * Reorder the records
+         * Reorder the position of records
          *
          * @param Request $request
          *
@@ -102,11 +105,13 @@ namespace App\Http\Controllers {
          */
         public function reorder(Request $request): RedirectResponse
         {
+            // input validation
             $validated = $request->validate([
                 'items'   => ['required', 'array'],
                 'items.*' => ['string', 'exists:item_types,id'],
             ]);
 
+            // database transaction
             DB::transaction(function () use ($validated) {
                 foreach ($validated['items'] as $index => $id) {
                     Models\ItemType::whereKey($id)->update([
