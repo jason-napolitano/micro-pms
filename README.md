@@ -1,5 +1,6 @@
-# micro-pms
-A micro property management system
+# MicroPMS
+> A lightweight property management system. The application has a property manager, unit manager, floor plan manager and make-ready
+> board.
 
 ## Installation
 
