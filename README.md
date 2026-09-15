@@ -8,6 +8,14 @@ $ cp .env.example .env
 ```
 
 ```bash
+$ composer install
+```
+
+```bash
+$ npm i
+```
+
+```bash
 $ php artisan key:generate
 ```
 
