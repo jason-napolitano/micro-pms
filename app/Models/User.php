@@ -79,17 +79,5 @@ namespace App\Models {
         {
             return $this->hasMany(MakeReadyItem::class, 'assigned_to');
         }
-
-        // admin bypass
-        public function hasAccessToProperty(Property $property): bool
-        {
-            if ($this->hasRole('admin')) {
-                return true;
-            }
-
-            return $this->properties()
-                ->whereKey($property->getKey())
-                ->exists();
-        }
     }
 }
