@@ -6,6 +6,7 @@ namespace App\Http\Controllers {
     use App\Http\Actions\Properties\GetPropertyUnits;
     use App\Http\Requests\Properties\StoreProperty;
     use Illuminate\Support\Facades\Storage;
+    use Illuminate\Support\Facades\Gate;
     use Inertia\Response;
     use Illuminate\Http;
     use App\Models;
@@ -14,9 +15,7 @@ namespace App\Http\Controllers {
     {
         public function index(): Response
         {
-            if (auth()->user()->cannot('view_properties')) {
-                abort(403);
-            }
+            Gate::authorize('view_properties');
 
             /**
              * Show a list of resources
@@ -38,9 +37,7 @@ namespace App\Http\Controllers {
          */
         public function show(Models\Property $property): Response
         {
-            if (auth()->user()->cannot('view', $property)) {
-                abort(403);
-            }
+            Gate::authorize('view', $property);
 
             return inertia('properties/show', [
                 'makeReadyUnits'   => http_action(GetMakeReadyUnits::class, $property),
@@ -60,13 +57,12 @@ namespace App\Http\Controllers {
          *
          * @param StoreProperty $request
          *
-         * @return RedirectResponse
+         * @return Http\RedirectResponse
          */
         public function store(StoreProperty $request): Http\RedirectResponse
         {
-            if (auth()->user()->cannot('create_property')) {
-                abort(403);
-            }
+            Gate::authorize('create_property');
+
             // create new record
             $record = Models\Property::create($request->validated());
 
@@ -97,10 +93,12 @@ namespace App\Http\Controllers {
          *
          * @param Models\Property $property
          *
-         * @return RedirectResponse
+         * @return Http\RedirectResponse
          */
         public function destroy(Models\Property $property): Http\RedirectResponse
         {
+            Gate::authorize('delete', $property);
+
             $property->delete();
             return back();
         }

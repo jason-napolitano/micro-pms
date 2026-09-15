@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers {
 
+    use Illuminate\Support\Facades\Gate;
     use Spatie\Permission\Models\Role;
     use Illuminate\Support\Facades;
     use Illuminate\Support;
@@ -20,9 +21,7 @@ namespace App\Http\Controllers {
          */
         public function index(): Response
         {
-            if(auth()->user()->cannot('view_users')) {
-                abort(403);
-            }
+            Gate::authorize('view_users');
 
             $users = Models\User::withoutRole('admin')->withoutTrashed()->with('roles')->paginate(10);
             $roles = Role::all();
@@ -41,9 +40,7 @@ namespace App\Http\Controllers {
         {
             $user ??= auth()->user();
 
-            if(auth()->user()->cannot('view', $user)) {
-                abort(403);
-            }
+            Gate::authorize('view', $user);
 
             $properties = Models\Property::withoutTrashed()->with('users')->get()
                 ->each(function (Models\Property $property) use ($user) {
@@ -58,6 +55,8 @@ namespace App\Http\Controllers {
 
         public function store(Requests\Users\StoreUser $request): Http\RedirectResponse
         {
+            Gate::authorize('create_users');
+
             $user = User::create([
                 'username' => str($request->username)->slug(),
                 'name'     => $request->name,
@@ -80,6 +79,8 @@ namespace App\Http\Controllers {
          */
         public function update(Requests\Users\UpdateUser $request, Models\User $user): Http\RedirectResponse
         {
+            Gate::authorize('update_user');
+
             $request->validated();
 
             $user->update([
@@ -142,7 +143,10 @@ namespace App\Http\Controllers {
          */
         public function destroy(Models\User $user): Http\RedirectResponse
         {
+            Gate::authorize('delete_user');
+
             $user->delete();
+
             return back();
         }
     }

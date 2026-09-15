@@ -9,14 +9,6 @@ use Illuminate\Auth\Access\Response;
 class VendorPolicy
 {
     /**
-     * Determine whether the user can view the model.
-     */
-    public function view(User $user, Vendor $vendor): bool
-    {
-        return $user->can('view_vendor');
-    }
-
-    /**
      * Determine whether the user can create models.
      */
     public function create(User $user): bool
