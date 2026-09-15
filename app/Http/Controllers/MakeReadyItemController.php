@@ -3,8 +3,8 @@
 namespace App\Http\Controllers {
 
     use App\Http\Requests\MakeReady;
-    use App\Models;
     use Illuminate\Http;
+    use App\Models;
 
     class MakeReadyItemController extends Controller
     {
