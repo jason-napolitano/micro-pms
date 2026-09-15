@@ -38,15 +38,19 @@ namespace App\Http\Controllers {
          */
         public function show(Models\User|null $user = null): Response
         {
+            // user data
             $user ??= auth()->user();
 
+            // authorization
             Gate::authorize('view', $user);
 
+            // users' properties
             $properties = Models\Property::withoutTrashed()->with('users')->get()
                 ->each(function (Models\Property $property) use ($user) {
                     $property['hasAccess'] = $property->users->contains('id', $user['id']);
                 });
 
+            // inertia response
             return inertia('users/show', [
                 'properties' => $properties,
                 'user'       => $user->load('properties'),
