@@ -59,11 +59,11 @@ namespace App\Http\Controllers {
             }
             if ($request['status'] === 'cancelled') {
                 $makeReady['cancelled_at'] = now();
-                $makeReady['status'] = MakeReadyStatus::COMPLETED;
+                $makeReady['status'] = MakeReadyStatus::CANCELLED;
             }
             if ($request['status'] === 'on_hold') {
                 $makeReady['on_hold_at'] = now();
-                $makeReady['status'] = MakeReadyStatus::COMPLETED;
+                $makeReady['status'] = MakeReadyStatus::ON_HOLD;
             }
 
             // save the data
