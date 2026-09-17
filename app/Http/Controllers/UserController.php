@@ -95,7 +95,7 @@ namespace App\Http\Controllers {
         public function update(Requests\Users\UpdateUser $request, Models\User $user): Http\RedirectResponse
         {
             // authorization
-            Gate::authorize('update_user');
+            Gate::authorize('update_profile');
 
             // update the record
             $request->validated();
@@ -136,6 +136,10 @@ namespace App\Http\Controllers {
          */
         public function updateImage(Http\Request $request): Http\RedirectResponse
         {
+            // authorization
+            Gate::authorize('update_profile_image');
+
+            // file uploading
             try {
                 $file = $request->file('image');
                 $user = Models\User::find(auth()->id());

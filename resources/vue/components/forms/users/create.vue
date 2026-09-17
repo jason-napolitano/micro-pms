@@ -44,7 +44,7 @@
 // --------------------------------------------------------
 // imports
 import { Plus } from 'lucide-vue-next'
-import { Role, User } from '@/types'
+import { Role } from '@/types'
 
 // --------------------------------------------------------
 // props
@@ -90,7 +90,3 @@ const { toTitleCase, replace } = useString()
 
 const roleName = (role: Role) => computed(() => toTitleCase(replace(role['name'], '_', ' '))).value
 </script>
-
-<style scoped>
-/* --- */
-</style>

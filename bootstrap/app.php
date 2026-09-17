@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Middleware\HandleInertiaRequests;
-use Illuminate\Foundation\Configuration;
 use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Configuration;
 use Inertia\ExceptionResponse;
 use Inertia\Inertia;
 
@@ -15,7 +15,11 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Configuration\Middleware $middleware): void {
         $middleware->web(append: [
-            HandleInertiaRequests::class
+            HandleInertiaRequests::class,
+        ]);
+        $middleware->alias([
+            'handle.application.setup' => \App\Http\Middleware\HandleApplicationSetup::class,
+            'handle.admin.exists'      => \App\Http\Middleware\HandleAdminExists::class,
         ]);
     })
     ->withExceptions(function (): void {

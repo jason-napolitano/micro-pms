@@ -19,12 +19,14 @@
             </span>
         </button>
 
-        <!-- Hidden file input -->
-        <input ref="fileInput" type="file" accept="image/jpeg,image/png,image/webp" class="hidden" @change="upload" />
+        <div v-if="props.canUpload">
+            <!-- Hidden file input -->
+            <input ref="fileInput" type="file" accept="image/jpeg,image/png,image/webp" class="hidden" @change="upload" />
 
-        <div class="el-button el-button--default mb-2 flex w-full items-center justify-center text-sm" @click="selectFile">
-            <Image class="h-3.5" />
-            <span>Update Image</span>
+            <div class="el-button el-button--default mb-2 flex w-full items-center justify-center text-sm" @click="selectFile">
+                <Image class="h-3.5" />
+                <span>Update Image</span>
+            </div>
         </div>
     </div>
 </template>
@@ -38,10 +40,13 @@ import { Image } from 'lucide-vue-next'
 // --------------------------------------------------------
 // props
 interface Props {
-    src?: string | null
+    src?: string | null,
+    canUpload: boolean,
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+    canUpload: true,
+})
 
 // --------------------------------------------------------
 // events
@@ -142,7 +147,3 @@ onBeforeUnmount(() => {
     }
 })
 </script>
-
-<style scoped>
-/* --- */
-</style>

@@ -11,7 +11,7 @@ namespace App\Policies {
          */
         public function view(User $user, User $model): bool
         {
-            return $user['id'] === $model['id'] || $user->can('view_user');
+            return $user['id'] === $model['id'] && $user->can('view_profile');
         }
 
         /**

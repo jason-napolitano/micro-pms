@@ -5,7 +5,6 @@
             <auth-content>
                 <slot />
             </auth-content>
-            <auth-footer />
         </auth-container>
     </master-layout>
 </template>
@@ -15,7 +14,6 @@
 // imports
 import AuthContainer from './partials/auth/container.vue'
 import AuthContent from './partials/auth/content.vue'
-import AuthFooter from './partials/auth/footer.vue'
 import AuthHeader from './partials/auth/header.vue'
 import MasterLayout from '@/layouts/master.vue'
 </script>

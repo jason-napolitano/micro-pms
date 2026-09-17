@@ -70,7 +70,3 @@ const dropdownCheck = computed(() => {
     return props.item.status === 'completed' || props.item.status === 'cancelled'
 })
 </script>
-
-<style scoped>
-/* --- */
-</style>

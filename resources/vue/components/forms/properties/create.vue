@@ -91,7 +91,3 @@ const handleImage = (event) => {
     form.image = event.target.files[0]
 }
 </script>
-
-<style scoped>
-/* --- */
-</style>

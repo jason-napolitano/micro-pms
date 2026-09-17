@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth', 'verified'])->group(function () {
     // -------------------------------------
     // index redirect (temporary fix)
-    Route::redirect('', 'properties')->name('welcome');
+    Route::redirect('', 'properties');
 
     // -------------------------------------
     // make-ready's

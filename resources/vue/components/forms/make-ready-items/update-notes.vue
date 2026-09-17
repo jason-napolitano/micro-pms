@@ -3,16 +3,18 @@
         <span> {{ truncate(props.item.notes ?? 'No Notes Available', 25) }}</span>
     </small>
 
-    <el-dialog v-model="dialogOpen" width="600" :title="`${props.item.type['name']} Notes`">
+    <el-dialog v-model="dialogOpen" width="700" :title="`${props.item.type['name']} Notes`" @closed="form.notes = ''">
         <div class="flex flex-col gap-4">
             <div class="flex flex-col items-center justify-center gap-2" v-if="can('update_make_ready_item_notes')">
                 <div class="flex gap-1">
-                    <small class="template-badge" @click="form.notes = 'Partial Paint'">Partial Paint</small>
-                    <small class="template-badge" @click="form.notes = 'Full Paint'">Full Paint</small>
-                    <small class="template-badge" @click="form.notes = 'Standard Cleaning'">Standard Cleaning</small>
-                    <small class="template-badge" @click="form.notes = 'Heavy Cleaning'">Heavy Cleaning</small>
-                    <small class="template-badge" @click="form.notes = 'Carpet Shampoo'">Carpet Shampoo</small>
-                    <small class="template-badge" @click="form.notes = 'Carpet Replacement'">Carpet Replacement</small>
+                    <el-button-group>
+                        <template-badge :form="form" text="Partial Paint" />
+                        <template-badge :form="form" text="Full Paint" />
+                        <template-badge :form="form" text="Standard Cleaning" />
+                        <template-badge :form="form" text="Heavy Cleaning" />
+                        <template-badge :form="form" text="Carpet Shampoo" />
+                        <template-badge :form="form" text="Carpet Replacement" />
+                    </el-button-group>
                 </div>
             </div>
             <el-form @submit.prevent="submitForm" :disabled="!can('update_make_ready_item_notes')">
@@ -31,6 +33,7 @@
 <script setup lang="ts">
 // --------------------------------------------------------
 // imports
+import TemplateBadge from '@/components/badges/make-ready-items/notes-template.vue'
 import { MakeReadyItem } from '@/types'
 
 // --------------------------------------------------------
@@ -75,11 +78,3 @@ const submitForm = () => {
     })
 }
 </script>
-
-<style scoped>
-@reference "tailwindcss";
-
-.template-badge {
-    @apply cursor-pointer border border-zinc-200 bg-zinc-100 px-1 py-0.5 dark:border-zinc-600 dark:bg-zinc-700;
-}
-</style>

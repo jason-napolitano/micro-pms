@@ -2,20 +2,24 @@
 
 namespace App\Models {
 
-    use Illuminate\Database\Eloquent\SoftDeletes;
+    use Illuminate\Database\Eloquent\Attributes\ObservedBy;
     use Illuminate\Foundation\Auth\User as Authenticatable;
     use Illuminate\Database\Eloquent\Factories\HasFactory;
     use Illuminate\Database\Eloquent\Concerns\HasUuids;
     use Illuminate\Database\Eloquent\Casts\Attribute;
+    use Illuminate\Database\Eloquent\SoftDeletes;
     use Illuminate\Database\Eloquent\Relations;
     use Illuminate\Notifications\Notifiable;
     use Spatie\Permission\Traits\HasRoles;
+    use App\Observers\UserObserver;
     use Carbon\Carbon;
 
+    #[ObservedBy(UserObserver::class)]
     /**
      * @method static where(string $where, string $is, ?string $operator = null)
      * @method static create(array $data)
      * @method static role(string $role)
+     * @method static count(): int
      */
     class User extends Authenticatable
     {

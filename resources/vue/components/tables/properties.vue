@@ -75,7 +75,3 @@ const deleteProperty = (property: Property) => {
     })
 }
 </script>
-
-<style scoped>
-/* --- */
-</style>

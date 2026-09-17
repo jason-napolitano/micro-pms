@@ -26,8 +26,8 @@
 <script setup lang="ts">
 // --------------------------------------------------------
 // imports
-import { Calendar, CircleCheck, Settings, CircleX } from 'lucide-vue-next'
 import UpdateStatus from '@/components/forms/make-ready/update-status.vue'
+import { CircleCheck, Settings, CircleX } from 'lucide-vue-next'
 import { Unit, MakeReadyItem } from '@/types'
 
 // --------------------------------------------------------
@@ -58,7 +58,3 @@ const dropdownCheck = computed(() => {
     return props.unit.make_ready.status === 'completed' || props.unit.make_ready['deleted_at']
 })
 </script>
-
-<style scoped>
-/* --- */
-</style>

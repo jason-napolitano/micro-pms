@@ -14,7 +14,7 @@
                     {{ description }}
                 </p>
 
-                <Link :href="route('welcome')" class="el-button el-button--default w-full"> Go Home </Link>
+                <Link :href="route('properties.index')" class="el-button el-button--default w-full"> Go Home </Link>
             </div>
         </div>
     </app-layout>

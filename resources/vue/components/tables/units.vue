@@ -81,7 +81,3 @@ const deleteUnit = (unit: Unit) => {
     })
 }
 </script>
-
-<style scoped>
-/* --- */
-</style>

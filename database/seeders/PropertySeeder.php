@@ -13,30 +13,14 @@ namespace Database\Seeders {
          */
         public function run(): void
         {
-            $marc = Property::create([
-                'address' => '1045 Armorlite Dr. San Marcos CA 92069',
+            $property = Property::create([
+                'address' => fake()->address(),
                 'phone'   => fake()->phoneNumber(),
-                'name'    => 'Marc Apartments',
-                'code'    => 'MRC',
+                'name'    => fake()->company(),
+                'code'    => 'CODE',
             ]);
-            /*
-            $rylan = Property::create([
-                'address' => '100 Main St, Vista, CA 92083',
-                'phone'   => fake()->phoneNumber(),
-                'name'    => 'Rylan Apartments',
-                'code'    => 'RYL',
-            ]);
-            $blockC = Property::create([
-                'address' => '250 North City Dr, San Marcos, CA 92078',
-                'phone'   => fake()->phoneNumber(),
-                'name'    => 'Block C Apartments',
-                'code'    => 'BLKC',
-            ]);
-            */
 
-            $marc->users()->attach(User::role('admin')->first());
-//            $rylan->users()->attach(User::role('admin')->first());
-//            $blockC->users()->attach(User::role('admin')->first());
+            $property->users()->attach(User::role('admin')->first());
         }
     }
 }

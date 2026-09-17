@@ -28,7 +28,3 @@ const submitChanges = () => {
     }))
 }
 </script>
-
-<style scoped>
-/* --- */
-</style>

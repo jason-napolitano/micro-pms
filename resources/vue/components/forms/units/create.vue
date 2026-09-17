@@ -77,7 +77,3 @@ const dialogOpen = ref(false)
 
 const toggleDialog = () => (dialogOpen.value = !dialogOpen.value)
 </script>
-
-<style scoped>
-/* --- */
-</style>

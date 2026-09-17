@@ -109,12 +109,13 @@ namespace Database\Seeders {
 
             // --------------------------------------------
             // profile
+            Permission::create(['name' => 'update_profile_image']);
             Permission::create(['name' => 'delete_profiles']);
             Permission::create(['name' => 'update_password']);
-            Permission::create(['name' => 'view_profile']);
+            Permission::create(['name' => 'update_profile']);
             Permission::create(['name' => 'delete_profile']);
+            Permission::create(['name' => 'view_profile']);
             Permission::create(['name' => 'update_email']);
-            Permission::create(['name' => 'update_image']);
             Permission::create(['name' => 'update_name']);
 
             // admin wildcard

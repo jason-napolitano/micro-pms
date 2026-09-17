@@ -5,7 +5,7 @@
         </template>
         <div class="flex gap-4">
             <aside class="w-1/4 md:w-1/5">
-                <user-image :src="props.user['avatar']" />
+                <user-image :src="props.user['avatar']" :canUpload="can('update_profile_image')" />
             </aside>
 
             <div class="flex w-3/4 flex-col space-y-4 md:w-4/5">

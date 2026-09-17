@@ -12,7 +12,7 @@
                 @drop.prevent="drop(0)"
                 @dragover.prevent
             >
-                <div v-if="activeDropzone === 0" class="dropzone" />
+                <div v-if="activeDropzone === 0" class="h-full border border-dashed border-blue-300 bg-blue-50 dark:bg-blue-950/25 dark:border-blue-700;" />
             </div>
             <template v-for="(item, index) in items" :key="item.id">
                 <div
@@ -36,7 +36,7 @@
                     class="h-1 transition-all"
                     @dragover.prevent
                 >
-                    <div v-if="activeDropzone === index + 1" class="dropzone" />
+                    <div v-if="activeDropzone === index + 1" class="h-full border border-dashed border-blue-300 bg-blue-50 dark:bg-blue-950/25 dark:border-blue-700;" />
                 </div>
             </template>
         </div>
@@ -156,11 +156,3 @@ function saveOrder() {
     )
 }
 </script>
-
-<style scoped>
-@reference "tailwindcss";
-
-.dropzone {
-    @apply h-full border border-dashed border-blue-300 bg-blue-50 dark:bg-blue-950/25 dark:border-blue-700;
-}
-</style>

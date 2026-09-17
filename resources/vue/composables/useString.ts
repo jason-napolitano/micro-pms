@@ -306,20 +306,6 @@ export function useString() {
         return null
     }
 
-    /** --------------------------------------------
-     * Get the initials of a name passed through as a string
-     *
-     * @param {string} name
-     *
-     * @returns {string}
-     */
-    function initials(name: string): string {
-        return name
-            .split(/\s+/)
-            .map((word: string) => word.charAt(0))
-            .join('')
-    }
-
     /**
      * Formats a URL
      *
@@ -377,7 +363,6 @@ export function useString() {
         removeCommas,
         toTitleCase,
         phoneNumber,
-        initials,
         truncate,
         singular,
         replace,

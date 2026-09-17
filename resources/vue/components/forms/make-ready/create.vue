@@ -90,7 +90,3 @@ const submitForm = () => {
     })
 }
 </script>
-
-<style scoped>
-/* --- */
-</style>

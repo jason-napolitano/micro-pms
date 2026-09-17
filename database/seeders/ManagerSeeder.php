@@ -62,12 +62,13 @@ namespace Database\Seeders {
             $manager->givePermissionTo('view_floor_plan');
 
             // profile
+            $manager->givePermissionTo('update_profile_image');
             $manager->givePermissionTo('delete_profiles');
             $manager->givePermissionTo('update_password');
             $manager->givePermissionTo('delete_profile');
+            $manager->givePermissionTo('update_profile');
             $manager->givePermissionTo('view_profile');
             $manager->givePermissionTo('update_email');
-            $manager->givePermissionTo('update_image');
             $manager->givePermissionTo('update_name');
 
             // users
@@ -75,6 +76,7 @@ namespace Database\Seeders {
             $manager->givePermissionTo('view_users');
             $manager->givePermissionTo('view_user');
 
+            /*
             $user = User::create([
                 'name'     => fake()->name(),
                 'username' => fake()->username(),
@@ -82,7 +84,8 @@ namespace Database\Seeders {
                 'password' => Hash::make('password'),
                 'website'  => fake()->url(),
             ]);
-            $user->assignRole('property_manager');
+            $user->assignRole($manager);
+            */
         }
     }
 }

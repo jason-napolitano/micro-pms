@@ -37,12 +37,14 @@ namespace Database\Seeders {
             $supervisor->givePermissionTo('delete_make_ready');
 
             // profile
-            $supervisor->givePermissionTo('view_profile');
+            $supervisor->givePermissionTo('update_profile_image');
             $supervisor->givePermissionTo('update_password');
-            $supervisor->givePermissionTo('update_image');
+            $supervisor->givePermissionTo('update_profile');
+            $supervisor->givePermissionTo('view_profile');
             $supervisor->givePermissionTo('update_email');
             $supervisor->givePermissionTo('update_name');
 
+            /*
             $user = User::create([
                 'name'     => fake()->name(),
                 'username' => fake()->username(),
@@ -50,7 +52,8 @@ namespace Database\Seeders {
                 'password' => Hash::make('password'),
                 'website'  => fake()->url(),
             ]);
-            $user->assignRole('supervisor');
+            $user->assignRole($supervisor);
+            */
         }
     }
 }

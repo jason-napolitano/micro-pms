@@ -1,6 +1,6 @@
 <template>
-    <auth-layout title="Login">
-        <el-form @submit.prevent="submitForm" class="flex w-full flex-col gap-4">
+    <auth-layout title="Create Admin user">
+        <el-form @submit.prevent="form.post(route('setup.store'))" class="flex w-full flex-col gap-4">
             <el-form-item label="Name" :error="form.errors.name">
                 <el-input name="name" placeholder="Full Name" v-model="form.name" />
             </el-form-item>
@@ -35,8 +35,4 @@ const form = useForm({
     password: '',
     password_confirmation: '',
 })
-
-const submitForm = () => {
-    form.post(route('register.store'))
-}
 </script>

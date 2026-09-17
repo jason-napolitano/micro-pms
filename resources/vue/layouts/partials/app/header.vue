@@ -18,10 +18,6 @@
 
 <script setup lang="ts">
 // --------------------------------------------------------
-// imports
-import { Link } from '@inertiajs/vue3'
-
-// --------------------------------------------------------
 // app name
 const { env } = useApp()
 

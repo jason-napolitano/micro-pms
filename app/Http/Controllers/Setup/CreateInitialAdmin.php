@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Auth {
+namespace App\Http\Controllers\Setup {
 
-    use App\Http\Requests\Users\RegisterUser;
-    use Illuminate\Http\RedirectResponse;
-    use App\Http\Controllers\Controller;
-    use Illuminate\Support\Facades;
-    use App\Models\User;
+	use App\Http\Controllers\Controller;
+	use App\Http\Requests\Auth\RegisterUser;
+	use App\Models\User;
+	use Illuminate\Http\RedirectResponse;
+	use Illuminate\Support\Facades;
 
-    class RegisterController extends Controller
+	class CreateInitialAdmin extends Controller
     {
         /**
          * Handle an incoming registration request.
-         * 
+         *
          * @param RegisterUser $request
          *
          * @return RedirectResponse
@@ -31,7 +31,7 @@ namespace App\Http\Controllers\Auth {
             ]);
 
             // assign role
-            $user->assignRole(env('APP_DEFAULT_ROLE'));
+            $user->assignRole('admin');
 
             // authenticate
             Facades\Auth::login($user);
