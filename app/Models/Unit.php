@@ -2,8 +2,10 @@
 
 namespace App\Models {
 
+    use Illuminate\Database\Eloquent\Attributes\Fillable;
     use Illuminate\Database\Eloquent\Relations;
 
+    #[Fillable(['floor_plan_id', 'property_id', 'unit_number'])]
     /**
      * @property Property $property
      * @property MakeReady $makeReady
@@ -11,16 +13,9 @@ namespace App\Models {
      */
     class Unit extends BaseModel
     {
-        /** @inheritdoc */
-        protected $fillable = [
-            'floor_plan_id',
-            'property_id',
-            'unit_number',
-        ];
-
         // ------------------------------------------------
         // relations
-        
+
         public function property(): Relations\BelongsTo
         {
             return $this->belongsTo(Property::class);
