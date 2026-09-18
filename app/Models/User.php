@@ -8,8 +8,7 @@ namespace App\Models {
     use Illuminate\Database\Eloquent;
     use Carbon\Carbon;
 
-    #[Eloquent\Attributes\Fillable([['name', 'email', 'username', 'password', 'avatar']])]
-    #[Eloquent\Attributes\Hidden(['password', 'remember_token'])]
+    #[Eloquent\Attributes\Hidden()]
     /**
      * @method static where(string $where, string $is, ?string $operator = null)
      * @method static create(array $data)
@@ -23,6 +22,21 @@ namespace App\Models {
         use Eloquent\SoftDeletes;
         use Notifiable;
         use HasRoles;
+
+        /** @inheritdoc */
+        protected $fillable = [
+            'name',
+            'email',
+            'username',
+            'password',
+            'avatar',
+        ];
+
+        /** @inheritdoc */
+        protected $hidden = [
+            'password',
+            'remember_token',
+        ];
 
         // ------------------------------------------------
         // casts
