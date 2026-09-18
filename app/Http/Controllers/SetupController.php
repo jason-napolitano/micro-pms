@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Setup {
+namespace App\Http\Controllers {
 
-	use App\Http\Controllers\Controller;
-	use App\Http\Requests\Auth\RegisterUser;
-	use App\Models\User;
-	use Illuminate\Http\RedirectResponse;
-	use Illuminate\Support\Facades;
+    use App\Http\Requests\Auth\RegisterUser;
+    use App\Models\User;
+    use Illuminate\Http\RedirectResponse;
+    use Illuminate\Support\Facades;
 
-	class CreateInitialAdmin extends Controller
+    class SetupController extends Controller
     {
         /**
          * Handle an incoming registration request.
@@ -37,7 +36,7 @@ namespace App\Http\Controllers\Setup {
             Facades\Auth::login($user);
 
             // redirect
-            return to_route('properties.index');
+            return to_route('login');
         }
     }
 }

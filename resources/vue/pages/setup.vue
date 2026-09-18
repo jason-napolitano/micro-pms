@@ -1,5 +1,8 @@
 <template>
     <auth-layout title="Create Admin user">
+        <el-alert>
+            Use this form to create the initial admin user for the application.
+        </el-alert>
         <el-form @submit.prevent="form.post(route('setup.store'))" class="flex w-full flex-col gap-4">
             <el-form-item label="Name" :error="form.errors.name">
                 <el-input name="name" placeholder="Full Name" v-model="form.name" />

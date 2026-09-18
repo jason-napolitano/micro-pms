@@ -7,7 +7,7 @@ namespace App\Http\Middleware {
     use Illuminate\Http\Request;
     use Symfony\Component\HttpFoundation\Response;
 
-    class HandleAdminExists
+    class HandleLoginRequests
     {
         /**
          * Handle an incoming request.
@@ -18,8 +18,8 @@ namespace App\Http\Middleware {
         {
             $adminExists = Models\User::role('admin')->exists();
 
-            if ($adminExists) {
-                return to_route('login');
+            if (!$adminExists) {
+                return to_route('setup');
             }
 
             return $next($request);

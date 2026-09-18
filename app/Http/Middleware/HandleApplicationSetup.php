@@ -19,8 +19,8 @@ namespace App\Http\Middleware {
         {
             $adminExists = Models\User::role('admin')->exists();
 
-            if (!$adminExists) {
-                return to_route('setup');
+            if ($adminExists) {
+                return to_route('login');
             }
 
             return $next($request);

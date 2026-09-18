@@ -19,7 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
         $middleware->alias([
             'handle.application.setup' => \App\Http\Middleware\HandleApplicationSetup::class,
-            'handle.admin.exists'      => \App\Http\Middleware\HandleAdminExists::class,
+            'handle.login.requests'    => \App\Http\Middleware\HandleLoginRequests::class,
         ]);
     })
     ->withExceptions(function (): void {
