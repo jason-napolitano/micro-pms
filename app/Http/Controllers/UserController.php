@@ -70,12 +70,7 @@ namespace App\Http\Controllers {
             Gate::authorize('create_users');
 
             // create the record
-            $user = User::create([
-                'username' => str($request->username)->slug(),
-                'name'     => $request->name,
-                'email'    => $request->email,
-                'password' => Facades\Hash::make($request->password),
-            ]);
+            $user = User::create($request->validated());
 
             // assign role
             $user->assignRole($request['role']);
@@ -98,13 +93,7 @@ namespace App\Http\Controllers {
             Gate::authorize('update_profile');
 
             // update the record
-            $request->validated();
-            $user->update([
-                'name'     => $request->name ?: $user['name'],
-                'username' => $request->username ? str($request->username)->slug(separator: '_') : $user['username'],
-                'email'    => $request->email ?: $user['email'],
-                'password' => $request->password ? Support\Facades\Hash::make($request->password) : $user['password'],
-            ]);
+            $user->update($request->validated());
 
             // redirect
             return to_route('users.show', $user);

@@ -4,11 +4,12 @@ namespace App\Models {
 
     use Illuminate\Foundation\Auth\User as Authenticatable;
     use Illuminate\Notifications\Notifiable;
+    use Illuminate\Support\Facades\Storage;
     use Spatie\Permission\Traits\HasRoles;
     use Illuminate\Database\Eloquent;
+    use Illuminate\Http\Request;
     use Carbon\Carbon;
 
-    #[Eloquent\Attributes\Hidden()]
     /**
      * @method static where(string $where, string $is, ?string $operator = null)
      * @method static create(array $data)

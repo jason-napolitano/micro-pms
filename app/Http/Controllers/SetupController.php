@@ -18,22 +18,11 @@ namespace App\Http\Controllers {
          */
         public function __invoke(RegisterUser $request): RedirectResponse
         {
-            // validation
-            $request->validated();
-
             // create record
-            $user = User::create([
-                'username' => str($request->username)->slug(),
-                'name'     => $request->name,
-                'email'    => $request->email,
-                'password' => Facades\Hash::make($request->password),
-            ]);
+            $user = User::create($request->validated());
 
             // assign role
             $user->assignRole('admin');
-
-            // authenticate
-            Facades\Auth::login($user);
 
             // redirect
             return to_route('login');
