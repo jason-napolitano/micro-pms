@@ -1,7 +1,7 @@
 <template>
     <el-button :icon="Plus" @click="toggleDialog()"> New Floor Plan </el-button>
 
-    <el-dialog v-model="dialogOpen" title="Create New Floor Plan" width="600">
+    <el-dialog v-model="dialogOpen" title="Create New Floor Plan" width="600" @close="allowMultiple = false">
         <div class="flex justify-end">
             <el-form-item label="Allow Multiple Entries?">
                 <el-checkbox v-model="allowMultiple" />

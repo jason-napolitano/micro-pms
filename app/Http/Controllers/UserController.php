@@ -99,7 +99,7 @@ namespace App\Http\Controllers {
         }
 
         /**
-         * Assign a property to a user record
+         * Assign / unassign a property to / from a user record
          *
          * @param User            $user
          * @param Models\Property $property

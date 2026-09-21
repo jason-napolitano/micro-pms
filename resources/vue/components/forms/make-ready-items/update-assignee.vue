@@ -3,7 +3,7 @@
         <el-tabs @tab-change="form.reset()">
             <el-tab-pane label="In-house">
                 <el-form-item label="Select Technician">
-                    <el-select v-model="form.assigned_to" :disabled="form.vendor_id" clearable>
+                    <el-select v-model="form.assigned_to" :disabled="form.vendor_id" clearable filterable>
                         <el-option
                             v-for="technician in props.technicians"
                             :key="technician['id']"
@@ -15,7 +15,7 @@
             </el-tab-pane>
             <el-tab-pane label="Vendor">
                 <el-form-item label="Select Vendor">
-                    <el-select v-model="form.vendor_id" :disabled="form.assigned_to" clearable>
+                    <el-select v-model="form.vendor_id" :disabled="form.assigned_to" clearable filterable>
                         <el-option v-for="vendor in props.vendors" :key="vendor['id']" :label="vendor['name']" :value="vendor['id']" />
                     </el-select>
                 </el-form-item>
