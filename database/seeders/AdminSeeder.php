@@ -18,12 +18,7 @@ namespace Database\Seeders {
             $admin->givePermissionTo('*');
 
             /*
-            $user = User::create([
-                'password' => bcrypt('password'),
-                'email'    => 'admin@example.com',
-                'name'     => fake()->name(),
-                'username' => fake()->username(),
-            ]);
+            $user = User::factory()->create();
             $user->assignRole($admin);
             */
         }

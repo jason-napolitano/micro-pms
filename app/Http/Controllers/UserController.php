@@ -4,7 +4,6 @@ namespace App\Http\Controllers {
 
     use Illuminate\Support\Facades\Gate;
     use Spatie\Permission\Models\Role;
-    use Illuminate\Support\Facades;
     use Illuminate\Support;
     use App\Http\Requests;
     use Inertia\Response;

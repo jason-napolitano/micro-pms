@@ -50,7 +50,7 @@ namespace App\Models {
                 $model->code = strtoupper($model->code);
             });
 
-            parent::deleting(function($model) {
+            parent::deleting(function ($model) {
                 $model->floorPlans->each->delete();
             });
         }

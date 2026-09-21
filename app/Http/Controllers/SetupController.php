@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers {
 
-    use App\Http\Requests\Auth\RegisterUser;
-    use App\Models\User;
+    use App\Http\Requests\Setup\StoreAdminUser;
     use Illuminate\Http\RedirectResponse;
-    use Illuminate\Support\Facades;
+    use App\Models\User;
 
     class SetupController extends Controller
     {
         /**
          * Handle an incoming registration request.
          *
-         * @param RegisterUser $request
+         * @param StoreAdminUser $request
          *
          * @return RedirectResponse
          */
-        public function __invoke(RegisterUser $request): RedirectResponse
+        public function __invoke(StoreAdminUser $request): RedirectResponse
         {
             // create record
             $user = User::create($request->validated());

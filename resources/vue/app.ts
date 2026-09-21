@@ -14,7 +14,6 @@ import './config/element'
 // stylesheets
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import '../css/app.css'
-import 'animate.css'
 
 // pinia
 const pinia = createPinia()

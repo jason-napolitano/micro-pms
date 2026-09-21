@@ -23,10 +23,10 @@ namespace App\Http\Middleware {
             return [
                 ...parent::share($request),
                 'auth' => [
-                    'permissions' => fn() => $request->user()
+                    'permissions' => fn () => $request->user()
                         ? $request->user()->getPermissionsViaRoles()
                         : [],
-                    'user'        => fn() => $request->user() ?: null,
+                    'user'        => fn () => $request->user() ?: null,
                 ]
             ];
         }

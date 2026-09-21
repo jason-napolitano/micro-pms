@@ -38,7 +38,7 @@ namespace App\Models {
         protected static function boot(): void
         {
             parent::boot();
-            parent::deleting(function($model) {
+            parent::deleting(function ($model) {
                 $model->units->each->delete();
             });
         }

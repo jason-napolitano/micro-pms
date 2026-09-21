@@ -6,7 +6,7 @@ namespace App\Http\Actions\Properties {
     use App\Models\Property;
 
     class GetMakeReadyUnits
-	{
+    {
         /**
          * Invoke the action
          *
@@ -19,7 +19,7 @@ namespace App\Http\Actions\Properties {
             return $property->units()
                 ->whereHas('makeReady')
                 ->with([
-                    'makeReady.items' => fn($query) => $query
+                    'makeReady.items' => fn ($query) => $query
                         ->join(
                             'item_types',
                             'item_types.id',

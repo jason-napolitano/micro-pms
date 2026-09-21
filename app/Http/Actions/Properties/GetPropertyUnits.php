@@ -6,7 +6,7 @@ namespace App\Http\Actions\Properties {
     use App\Models\Property;
 
     class GetPropertyUnits
-	{
+    {
         /**
          * Invoke the action
          *

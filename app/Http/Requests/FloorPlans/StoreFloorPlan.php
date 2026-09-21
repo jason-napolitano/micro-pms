@@ -2,11 +2,10 @@
 
 namespace App\Http\Requests\FloorPlans {
 
-	use Illuminate\Contracts\Validation\ValidationRule;
-	use Illuminate\Foundation\Http\FormRequest;
-	use Illuminate\Validation\Rule;
+    use Illuminate\Foundation\Http\FormRequest;
+    use Illuminate\Validation\Rule;
 
-	class StoreFloorPlan extends FormRequest
+    class StoreFloorPlan extends FormRequest
     {
         /**
          * Determine if the user is authorized to make this request.
@@ -21,7 +20,7 @@ namespace App\Http\Requests\FloorPlans {
         /**
          * Get the validation rules that apply to the request.
          *
-         * @return array<string>
+         * @return array
          */
         public function rules(): array
         {

@@ -21,7 +21,7 @@ namespace App\Http\Requests\Users {
         /**
          * Get the validation rules that apply to the request.
          *
-         * @return array<string>
+         * @return array
          */
         public function rules(): array
         {

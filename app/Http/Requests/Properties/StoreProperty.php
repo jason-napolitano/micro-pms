@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Properties {
 
-    use Illuminate\Contracts\Validation\ValidationRule;
     use Illuminate\Foundation\Http\FormRequest;
 
     class StoreProperty extends FormRequest
@@ -20,7 +19,7 @@ namespace App\Http\Requests\Properties {
         /**
          * Get the validation rules that apply to the request.
          *
-         * @return array<string>
+         * @return array
          */
         public function rules(): array
         {

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers {
 
-	use App\Http\Requests\FloorPlans\StoreFloorPlan;
+    use App\Http\Requests\FloorPlans\StoreFloorPlan;
     use Illuminate\Http\RedirectResponse;
     use App\Models\FloorPlan;
 
-	class FloorPlanController extends Controller
+    class FloorPlanController extends Controller
     {
         /**
          * Store a newly created resource in storage.

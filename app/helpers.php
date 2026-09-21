@@ -23,6 +23,6 @@ if (! function_exists('user')) {
 if (! function_exists('http_action')) {
     function http_action($actionClass, $args): Collection
     {
-        return (new $actionClass)($args);
+        return (new $actionClass())($args);
     }
 }
